@@ -1,0 +1,6 @@
+<input [nzAutocomplete]="option">
+<nz-autocomplete #option nzBackfill>
+  <nz-auto-option *ngFor="let op of options" [nzValue]="op">
+    {{op}}
+  </nz-auto-option>
+</nz-autocomplete>

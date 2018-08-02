@@ -1,0 +1,12 @@
+.login-card {
+  padding: 20px;
+  margin: 100px auto;
+  border-radius: 10px;
+  max-width: 50%;
+  min-width: 300px;
+  background-color: white;
+  box-shadow: rgba(0,0,0,0.2) 0 0 5px;
+}
+.login-btn {
+  width: 100%;
+}

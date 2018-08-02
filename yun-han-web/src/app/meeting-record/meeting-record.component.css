@@ -1,0 +1,9 @@
+.wrapper {
+  width: 100%;
+  padding: 10px;
+  padding-bottom: 0;
+  text-align: left;
+}
+.btn-wrapper {
+  text-align: right;
+}

@@ -1,10 +1,15 @@
 <!-- NG-ZORRO -->
-<nz-layout style="height: 100vh; width: 100vw;">
+<nz-layout style="width: 100vw; min-height: 100vh;">
   <nz-header>
-    <h2 class="title-white" style="text-align: center">云汉教育</h2>
+    <h2 class="title-white" style="text-align: center">{{globalTitle}}</h2>
   </nz-header>
-  <nz-content>
-    content
+  <nz-content style="padding: 10px; height: 100%; margin-bottom: 0;">
+    <!--<div style="height: 100%; display: flex;justify-content: space-around; align-items: center;">-->
+      <!--<app-login></app-login>-->
+    <router-outlet></router-outlet>
+    <!--</div>-->
   </nz-content>
-  <nz-footer>footer</nz-footer>
+  <nz-footer>
+    <app-footer></app-footer>
+  </nz-footer>
 </nz-layout>

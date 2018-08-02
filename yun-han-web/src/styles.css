@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+.container {
+  width: 100vw;
+  min-height: 100%;
+}
+.extra-text {
+  color: #808695;
+  font-size: 0.8em;
+}
+.primary-text {
+  color: #515a6e;
+}
+.title-text {
+  color: #17233d;
+}
+.long-btn {
+  width: 100%;
+  margin-top: 10px;
+}

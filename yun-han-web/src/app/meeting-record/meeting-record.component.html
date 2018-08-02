@@ -1,0 +1,30 @@
+<div>
+  <div class="top-wrapper wrapper">
+    <h2 class="title-text">{{meetingRecord.title}}</h2>
+    <p class="extra-text">{{meetingRecord.time | date: 'yyyy/MM/dd HH'}}</p>
+    <p class="extra-text">{{meetingRecord.recorder}}</p>
+    <p *ngIf="meetingRecord.isCopy">副本</p>
+  </div>
+  <nz-divider></nz-divider>
+  <div class="primary-text main-wrapper wrapper">
+    <ol>
+      <li *ngFor="let item of meetingRecord.contents">
+        {{item}}
+      </li>
+    </ol>
+  </div>
+  <div class="btn-wrapper wrapper">
+    <button
+      nz-button
+      [nzType]="'primary'"
+      (click)="onBack()"
+      class="long-btn">
+      <i class="anticon anticon-rollback"></i>
+      返回
+    </button>
+    <button nz-button class="long-btn" (click)="onClickCopy()">
+      <i class="anticon anticon-copy"></i>
+      拷贝
+    </button>
+  </div>
+</div>

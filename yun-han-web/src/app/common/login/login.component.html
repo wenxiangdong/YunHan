@@ -1,0 +1,35 @@
+<form nz-form [formGroup]="loginForm" class="login-card">
+  <nz-form-item>
+    <nz-form-control>
+      <nz-input-group [nzPrefixIcon]="'anticon anticon-user'">
+        <input nz-input formControlName="username" placeholder="用户名">
+      </nz-input-group>
+      <nz-form-explain *ngIf="loginForm.get('username').dirty && loginForm.get('username').errors">
+        请输入用户名
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-input-group [nzPrefixIcon]="'anticon anticon-lock'">
+        <input nz-input formControlName="password" placeholder="密码">
+      </nz-input-group>
+      <nz-form-explain *ngIf="loginForm.get('password').dirty && loginForm.get('password').errors">
+        请输入密码
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <label nz-checkbox [formControlName]="'remember'">记住我</label>
+      <button
+        nz-button
+        [nzLoading]="loginLoading"
+        [nzType]="'primary'"
+        (click)="onClickLogin()"
+        class="login-btn">登陆</button>
+      <button nz-button class="login-btn" >注册</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<!--<app-footer style="position: fixed; bottom: 5px;"></app-footer>-->

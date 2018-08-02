@@ -1,0 +1,40 @@
+<div style="min-height: 100%;" *ngIf="!selectedRecord">
+  <div style="text-align: center; padding: 10px;">
+    <nz-range-picker [(ngModel)]="dateRange"></nz-range-picker>
+    <button
+      class="long-btn"
+      nz-button
+      [nzLoading]="loading"
+      [nzType]="'primary'"
+      (click)="onSearch()">
+      <i class="anticon anticon-search"></i>
+      搜索
+    </button>
+    <button
+      class="long-btn"
+      nz-button
+      (click)="onNewRecord()">
+      <i class="anticon anticon-plus-circle-o"></i>
+      新增
+    </button>
+  </div>
+
+  <nz-divider></nz-divider>
+
+  <div style="background-color: inherit;">
+    <nz-timeline>
+      <nz-timeline-item *ngFor="let item of meetingRecords">
+        <p>{{item.time | date: 'yyyy/MM/dd hh'}}</p>
+        <p>{{item.title}}</p>
+        <a (click)="onSelectRecord(item)">详情</a>
+      </nz-timeline-item>
+    </nz-timeline>
+  </div>
+</div>
+
+<div *ngIf="selectedRecord">
+  <app-meeting-record
+    [meetingRecord]="selectedRecord"
+    (close)="onRecordClose()"
+  ></app-meeting-record>
+</div>

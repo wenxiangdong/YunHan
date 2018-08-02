@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { LoggerService } from '../../../services/utils/logger.service';
 
 @Component({
   selector: 'app-function-card',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FunctionCardComponent implements OnInit {
 
-  constructor() { }
+  private TAG = 'FunctionCardComponent';
+
+  @Input()
+  public link: string;
+
+  @Input()
+  public name = '功能';
+
+  @Input()
+  public icon;
+
+  constructor(private logger: LoggerService) { }
 
   ngOnInit() {
+  }
+
+  onGo() {
+   this.logger.info(this.TAG, 'on go');
   }
 
 }

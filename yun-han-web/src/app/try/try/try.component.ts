@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MeetingRecord } from '../../../types/meeting-record';
+import { BaseHttpService } from '../../../services/api/base-http.service';
 
 @Component({
   selector: 'app-try',
@@ -11,7 +12,9 @@ export class TryComponent implements OnInit {
   options = [];
   record: MeetingRecord;
 
-  constructor() { }
+  constructor(
+    private http: BaseHttpService
+  ) { }
 
   ngOnInit() {
     this.options = ['a', 'b', 'c'];

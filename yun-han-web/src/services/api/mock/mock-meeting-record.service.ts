@@ -18,11 +18,11 @@ export class MockMeetingRecordService implements IMeetingRecordService {
     private logger: LoggerService
   ) { }
 
-  addRecord(newRecord: MeetingRecord): Observable<HttpResponse<MeetingRecord[]>> {
+  addRecord(newRecord: MeetingRecord): Promise<HttpResponse<MeetingRecord[]>> {
     return undefined;
   }
 
-  getRecordsByRange(range: Date[]): Observable<HttpResponse<MeetingRecord[]>> {
+  getRecordsByRange(range: Date[]): Promise<HttpResponse<MeetingRecord[]>> {
     this.logger.info(this.TAG, 'getRecordsByRange', `range: ${range}`);
     let res: MeetingRecord[] = [];
     for (let i = 0; i < 6; i++) {
@@ -36,6 +36,6 @@ export class MockMeetingRecordService implements IMeetingRecordService {
       );
       res.push(rec);
     }
-    return this.http.http(res);
+    return this.http.go(res);
   }
 }

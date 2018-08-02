@@ -17,14 +17,14 @@ export class MeetingRecordService implements IMeetingRecordService {
     private mock: MockMeetingRecordService
   ) {}
 
-  addRecord(newRecord: MeetingRecord): Observable<HttpResponse<MeetingRecord[]>> {
+  addRecord(newRecord: MeetingRecord): Promise<HttpResponse<MeetingRecord[]>> {
     if (isTestMode) {
       return this.mock.addRecord(newRecord);
     }
     return undefined;
   }
 
-  getRecordsByRange(range: Date[]): Observable<HttpResponse<MeetingRecord[]>> {
+  getRecordsByRange(range: Date[]): Promise<HttpResponse<MeetingRecord[]>> {
     if (isTestMode) {
       return this.mock.getRecordsByRange(range);
     }

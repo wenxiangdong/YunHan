@@ -1,9 +1,9 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { IUserService } from '../../types/i-user-service';
-import { Observable } from 'rxjs';
 import { MockHttpService } from './mock/mock-http.service';
 import { isTestMode } from './http-config';
 import { HttpResponse } from '../../types/http-response';
+import { BaseHttpService } from './base-http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +11,23 @@ import { HttpResponse } from '../../types/http-response';
 export class UserService implements IUserService {
 
   constructor(
-    private mockHttpService: MockHttpService
+    private mockHttpService: MockHttpService,
+    private httpService: BaseHttpService
   ) { }
 
-  public signIn(username: string, password: string): Observable<HttpResponse<any>> {
+  public signIn(username: string, password: string): Promise<HttpResponse<any>> {
     if (isTestMode) {
-      return this.mockHttpService.http('');
+      return this.mockHttpService.go('');
+      // return this.mockHttpService.error();
     }
-    return undefined;
+    return this.httpService.post('/api/sign-in', {username, password});
   }
 
-  public signUp(username: string, password: string): Observable<HttpResponse<any>> {
-    return undefined;
+  public signUp(username: string, password: string): Promise<HttpResponse<any>> {
+    if (isTestMode) {
+      return this.mockHttpService.go('');
+    }
+    return this.httpService.post('/api/sign-up', {username, password});
   }
 
 }

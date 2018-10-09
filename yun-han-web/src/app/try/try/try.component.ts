@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { MeetingRecord } from '../../../types/meeting-record';
 import { BaseHttpService } from '../../../services/api/base-http.service';
+import mapboxgl from 'mapbox-gl';
+import { CENTER, MAPBOX_TOKEN } from '../../constants/mapbox';
+import { StudentRequest } from '../../../types/student-request';
+import { Location } from '../../../types/location';
+import { Course } from '../../../types/enums/course.enum';
+import { Teacher } from '../../../types/teacher';
+import { Contact } from '../../../types/contact';
 
 @Component({
   selector: 'app-try',
@@ -10,27 +16,20 @@ import { BaseHttpService } from '../../../services/api/base-http.service';
 export class TryComponent implements OnInit {
 
   options = [];
-  record: MeetingRecord;
+  studentRequest: StudentRequest;
+  teacher: Teacher = new Teacher();
 
   constructor(
     private http: BaseHttpService
   ) { }
 
   ngOnInit() {
-    this.options = ['a', 'b', 'c'];
-    this.record = new MeetingRecord(
-      '标题',
-      new Date(),
-      [
-        '哈哈哈哈哈哈品保侃侃侃侃你叫啥哈哈哈哈哈哈哈哈',
-        '哈哈哈哈哈哈品保侃侃侃侃你叫啥哈哈哈哈哈哈哈哈',
-        '哈哈哈哈哈哈品保侃侃侃侃你叫啥哈哈哈哈哈哈哈哈',
-        '哈哈哈哈哈哈品保侃侃侃侃你叫啥哈哈哈哈哈哈哈哈',
-        '哈哈哈哈哈哈品保侃侃侃侃你叫啥哈哈哈哈哈哈哈哈',
-        '哈哈哈哈哈哈品保侃侃侃侃你叫啥哈哈哈哈哈哈哈哈'
-      ],
-      '李培林'
-    );
+    this.initRequest();
+    console.log(this.teacher, new Contact());
+  }
+
+  initRequest() {
+
   }
 
 }

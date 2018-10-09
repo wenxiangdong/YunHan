@@ -1,0 +1,37 @@
+<div class="out-wrapper">
+    <input
+      class="text-input"
+      nz-input
+      placeholder="标题"
+      [nzSize]="'large'"
+      [(ngModel)]="meetingRecord.title">
+    <input
+      class="text-input"
+      nz-input
+      placeholder="记录员"
+      [(ngModel)]="meetingRecord.recorder"
+    >
+    <p class="extra-text" style="margin-left: 5px;">
+      {{meetingRecord.time | date: 'yyyy/MM/dd hh'}}
+    </p>
+  <nz-divider></nz-divider>
+
+  <textarea
+    nz-input
+    placeholder="会议内容"
+    [nzAutosize]="{minRows: 3}"
+    [(ngModel)]="meetingRecord.content">
+  </textarea>
+
+  <nz-divider></nz-divider>
+
+  <button nz-button class="long-btn" [nzType]="'primary'" (click)="onSubmit()">
+    <!--<i class="anticon anticon-check-circle"></i>-->
+    <i class="anticon anticon-check-circle-o"></i>
+    完成
+  </button>
+  <button nz-button class="long-btn" (click)="onCancel()">
+    <i class="anticon anticon-exclamation-circle-o"></i>
+    放弃
+  </button>
+</div>

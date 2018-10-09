@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoggerService } from '../../../services/utils/logger.service';
 import { UserService } from '../../../services/api/user.service';
 import { BaseHttpService } from '../../../services/api/base-http.service';
-import { ResultMessage } from '../../../types/result-message';
+import { ResultMessage } from '../../../types/enums/result-message';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
 
@@ -57,11 +57,7 @@ export class LoginComponent implements OnInit {
         let res = await this.userService.signIn(
           form.value[this.USERNAME], form.value[this.PASSWORD]
         );
-        if (res.error) {
-          throw new Error(res.error);
-        } else {
-          await this.router.navigateByUrl('/index');
-        }
+        await this.router.navigateByUrl('/index');
       } catch (e) {
         this.logger.error(this.TAG, e);
         this.messageService.error(`登陆失败\n${e.message}`);

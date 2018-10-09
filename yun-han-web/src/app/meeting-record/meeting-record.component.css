@@ -1,9 +1,12 @@
 .wrapper {
   width: 100%;
-  padding: 10px;
-  padding-bottom: 0;
+  padding: 10px 10px 0;
   text-align: left;
 }
 .btn-wrapper {
   text-align: right;
 }
+.main-wrapper {
+  word-wrap: break-word;
+}
+

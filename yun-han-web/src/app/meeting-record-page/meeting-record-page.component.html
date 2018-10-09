@@ -8,7 +8,7 @@
       [nzType]="'primary'"
       (click)="onSearch()">
       <i class="anticon anticon-search"></i>
-      搜索
+      查询
     </button>
     <button
       class="long-btn"
@@ -22,8 +22,19 @@
   <nz-divider></nz-divider>
 
   <div style="background-color: inherit;">
+    <nz-input-group
+      nzSuffixIcon="anticon anticon-tag-o"
+      style="margin-bottom: 10px;"
+    >
+      <input
+        type="text"
+        nz-input
+        placeholder="通过标题筛选"
+        [(ngModel)]="filter"
+      >
+    </nz-input-group>
     <nz-timeline>
-      <nz-timeline-item *ngFor="let item of meetingRecords">
+      <nz-timeline-item *ngFor="let item of recordsToShow">
         <p>{{item.time | date: 'yyyy/MM/dd hh'}}</p>
         <p>{{item.title}}</p>
         <a (click)="onSelectRecord(item)">详情</a>

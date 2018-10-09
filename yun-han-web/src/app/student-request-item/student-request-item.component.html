@@ -1,0 +1,64 @@
+<nz-card
+  style="width: 100%; margin: 10px 0;"
+  [nzBordered]="false"
+  [nzExtra]="cardExtra"
+  [nzTitle]="studentRequest.studentInfo.name">
+  <div class="content-wrapper">
+
+    <div class="item-wrapper">
+      <span class="title-text">科目：</span>
+      <nz-tag *ngFor="let course of studentRequest.courses">
+        {{course}}
+      </nz-tag>
+    </div>
+
+    <div class="item-wrapper">
+      <span class="title-text">年级：</span>
+      {{studentRequest.studentInfo.grade}}
+    </div>
+
+    <div class="item-wrapper">
+      <span class="title-text">性别：</span>
+      {{studentRequest.studentInfo.gender}}
+    </div>
+
+    <div class="item-wrapper">
+      <span class="title-text">地址：</span>
+      {{studentRequest.studentInfo.location.fullName}}
+    </div>
+
+    <div class="item-wrapper">
+      <span class="title-text">备注：</span>
+      {{studentRequest.ps}}
+    </div>
+
+    <div class="item-wrapper" *ngIf="studentRequest.isArranged && studentRequest.teacherInfo">
+      <span class="title-text">分配教员：</span>
+      {{studentRequest.teacherInfo.name}}
+    </div>
+
+    <ng-template [ngIf]="detailMode">
+      <div class="item-wrapper">
+        <span class="title-text">学生电话：</span>
+        {{studentRequest.studentInfo.contact.phone}}
+      </div>
+      <div class="item-wrapper">
+        <span class="title-text">学生微信：</span>
+        {{studentRequest.studentInfo.contact.wechat}}
+      </div>
+      <div class="item-wrapper">
+        <span class="title-text">学生QQ：</span>
+        {{studentRequest.studentInfo.contact.qq}}
+      </div>
+      <div class="item-wrapper">
+        <span class="title-text">学生邮箱：</span>
+        {{studentRequest.studentInfo.contact.email}}
+      </div>
+    </ng-template>
+  </div>
+</nz-card>
+
+<ng-template #cardExtra>
+  <a *ngIf="(!detailMode) && (!studentRequest.isArranged)" (click)="onClickArrange()">安排</a>
+  <a *ngIf="(!detailMode) && (studentRequest.isArranged)" (click)="onClickDetail()">详情</a>
+</ng-template>

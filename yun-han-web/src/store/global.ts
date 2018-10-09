@@ -20,7 +20,12 @@ class GlobalStore {
     const value = this._stores[key] || defaultValue;
     return value;
   }
+
+  public removeStore(key: string) {
+    this._stores[key] = null;
+  }
 }
 
 export let store = GlobalStore.getInstance();
 export const GLOBAL_TITLE = 'global-title';
+export const COPY_RECORD = 'copy-record';

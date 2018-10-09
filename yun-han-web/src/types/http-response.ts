@@ -1,4 +1,4 @@
-import { ResultMessage } from './result-message';
+import { ResultMessage } from './enums/result-message';
 
 export class HttpResponse<T> {
   constructor(

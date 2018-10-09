@@ -1,0 +1,57 @@
+<nz-card>
+  <div>
+    <span class="title-text">教员：</span>
+    <span class="primary-text">{{teacher.name}}</span>
+  </div>
+  <div>
+    <span class="title-text">性别：</span>
+    <span class="primary-text">{{teacher.gender}}</span>
+  </div>
+  <div>
+    <span class="title-text">年龄：</span>
+    <span class="primary-text">{{teacher.age}}</span>
+  </div>
+  <div>
+    <span class="title-text">科目：</span>
+    <nz-tag *ngFor="let course of teacher.courses">
+      {{course}}
+    </nz-tag>
+  </div>
+  <div>
+    <span class="title-text">住址：</span>
+    <span class="primary-text">{{teacher.location.fullName}}</span>
+  </div>
+
+  <app-load-more color="blue" *ngIf="!detailMode" (startLoading)="onShowDetail()"></app-load-more>
+
+  <ng-template [ngIf]="detailMode">
+    <div>
+      <span class="title-text">毕业学校：</span>
+      <span class="primary-text">{{teacher.school}}</span>
+    </div>
+    <div>
+      <span class="title-text">班级：</span>
+      <span class="primary-text">{{teacher.gradeClass}}</span>
+    </div>
+    <div>
+      <span class="title-text">好评率：</span>
+      <span class="primary-text">{{teacher.goodFeedbackRate}}</span>
+    </div>
+    <div class="item-wrapper">
+      <span class="title-text">电话：</span>
+      {{teacher.contact.phone}}
+    </div>
+    <div class="item-wrapper">
+      <span class="title-text">微信：</span>
+      {{teacher.contact.wechat}}
+    </div>
+    <div class="item-wrapper">
+      <span class="title-text">QQ：</span>
+      {{teacher.contact.qq}}
+    </div>
+    <div class="item-wrapper">
+      <span class="title-text">邮箱：</span>
+      {{teacher.contact.email}}
+    </div>
+  </ng-template>
+</nz-card>

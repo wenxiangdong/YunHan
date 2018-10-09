@@ -1,0 +1,32 @@
+<div class="page" *ngIf="mode === MODE_ALL">
+  <nz-tabset>
+    <nz-tab [nzTitle]="'待安排'" (nzSelect)="onSelectTabWaiting()">
+      <app-student-request-item
+        *ngFor="let request of studentRequests"
+        [studentRequest]="request"
+        (arrange)="onArrangeRequest(request)"></app-student-request-item>
+      <app-load-more
+        [loading]="loadingRequests"
+        [hasMore]="hasMoreRequests"
+        (startLoading)="onStartLoading()"></app-load-more>
+    </nz-tab>
+    <nz-tab [nzTitle]="'已安排'" (nzSelect)="onSelectTabFinished()">
+      <app-student-request-item
+        *ngFor="let request of arrangedStudentRequests"
+        [studentRequest]="request"
+        (detail)="onShowRequestDetail(request)"></app-student-request-item>
+      <app-load-more
+        [loading]="loadingArrangedRequests"
+        [hasMore]="hasMoreArrangedRequests"
+        (startLoading)="onStartLoadingArranged()"></app-load-more>
+    </nz-tab>
+  </nz-tabset>
+</div>
+
+<div class="page" *ngIf="mode === MODE_DETAIL">
+  <app-teaching-arrangement-detail [studentRequest]="selectedRequest"></app-teaching-arrangement-detail>
+  <button nz-button [nzType]="'primary'" (click)="mode = MODE_ALL" class="long-btn">
+    <i class="anticon anticon-rollback"></i>
+    返回
+  </button>
+</div>

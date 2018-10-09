@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MockHttpService } from './mock-http.service';
-import { IMeetingRecordService } from '../../../types/i-meeting-record-service';
+import { IMeetingRecordService } from '../../../types/interfaces/i-meeting-record-service';
 import { MeetingRecord } from '../../../types/meeting-record';
-import { Observable } from 'rxjs';
 import { LoggerService } from '../../utils/logger.service';
 import { HttpResponse } from '../../../types/http-response';
 
@@ -18,20 +17,18 @@ export class MockMeetingRecordService implements IMeetingRecordService {
     private logger: LoggerService
   ) { }
 
-  addRecord(newRecord: MeetingRecord): Promise<HttpResponse<MeetingRecord[]>> {
+  addRecord(newRecord: MeetingRecord): Promise<MeetingRecord[]> {
     return undefined;
   }
 
-  getRecordsByRange(range: Date[]): Promise<HttpResponse<MeetingRecord[]>> {
+  getRecordsByRange(range: Date[]): Promise<MeetingRecord[]> {
     this.logger.info(this.TAG, 'getRecordsByRange', `range: ${range}`);
     let res: MeetingRecord[] = [];
     for (let i = 0; i < 6; i++) {
       let rec = new MeetingRecord(
         '标题标题标题标题标题标题' + i,
         new Date(),
-        [
-          '内容', '内容', '内容'
-        ],
+        '内容内容内容内容内容内容',
         '李' + i
       );
       res.push(rec);

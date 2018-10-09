@@ -1,0 +1,14 @@
+.out-wrapper {
+  width: 100%;
+}
+
+.item-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.text-input {
+  margin-bottom: 5px;
+}

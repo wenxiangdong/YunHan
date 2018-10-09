@@ -1,0 +1,17 @@
+<nz-divider [nzText]="content"></nz-divider>
+<ng-template #content>
+ <div
+   *ngIf="!loading && hasMore"
+   [style.color]="color"
+   (click)="onClickLoading()"
+   class="action">
+   <i class="anticon anticon-down"></i>
+   加载更多
+ </div>
+  <div *ngIf="!hasMore">
+    已经加载全部
+  </div>
+  <div *ngIf="loading && hasMore" [style.color]="color">
+    <i class="anticon anticon-spin anticon-loading"></i>
+  </div>
+</ng-template>

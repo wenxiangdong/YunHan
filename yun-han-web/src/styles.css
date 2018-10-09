@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css";
 .container {
   width: 100vw;
   min-height: 100%;
@@ -13,7 +14,15 @@
 .title-text {
   color: #17233d;
 }
+
+.accent-text {
+  color: #2db7f5;
+}
+
 .long-btn {
   width: 100%;
   margin-top: 10px;
+}
+.page {
+  min-height: 100%;
 }

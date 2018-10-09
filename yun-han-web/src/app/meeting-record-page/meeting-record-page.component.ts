@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { GLOBAL_TITLE, store } from '../../store/global';
 import { MeetingRecord } from '../../types/meeting-record';
 import { MeetingRecordService } from '../../services/api/meeting-record.service';
-import { ResultMessage } from '../../types/result-message';
+import { ResultMessage } from '../../types/enums/result-message';
 import { NzMessageService } from 'ng-zorro-antd';
+import { LoggerService } from '../../services/utils/logger.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-meeting-record-page',
@@ -11,27 +13,39 @@ import { NzMessageService } from 'ng-zorro-antd';
   styleUrls: ['./meeting-record-page.component.css']
 })
 export class MeetingRecordPageComponent implements OnInit {
+  private TAG = 'MeetingRecordPageComponent';
 
   // data
   meetingRecords: MeetingRecord[] = [];
   selectedRecord: MeetingRecord;
   dateRange: Date[] = [];
   loading = false;
+  filter = '';
+
+  get recordsToShow() {
+    return this.meetingRecords.filter(
+      item => item.title.indexOf(this.filter) > -1
+    );
+  }
 
   constructor(
+    private logger: LoggerService,
     private meetingService: MeetingRecordService,
-    private messageService: NzMessageService
+    private messageService: NzMessageService,
+    private router: Router
   ) { }
 
-  getRecords() {
+  async getRecords() {
     this.loading = true;
-    this.meetingService.getRecordsByRange(this.dateRange)
-      .subscribe(res => {
-        if (res.result === ResultMessage.SUCCESS) {
-          this.meetingRecords = res.data;
-        }
-        this.loading = false;
-      });
+    try {
+      const res = await this.meetingService.getRecordsByRange(this.dateRange);
+      this.meetingRecords = res;
+    } catch (e) {
+      this.logger.error(this.TAG, e.message);
+      this.messageService.error(`获取失败 ${e.message}`);
+    } finally {
+      this.loading = false;
+    }
   }
 
   ngOnInit() {
@@ -39,16 +53,16 @@ export class MeetingRecordPageComponent implements OnInit {
   }
 
   // 搜索会议记录
-  onSearch() {
+  async onSearch() {
     if (!this.dateRange || !this.dateRange.length) {
       this.messageService.error('请选择日期区间');
       return;
     }
-    this.getRecords();
+    await this.getRecords();
   }
   // 新建会议记录
   onNewRecord() {
-
+    this.router.navigateByUrl('/meeting-record-new');
   }
 
   onRecordClose() {

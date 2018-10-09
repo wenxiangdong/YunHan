@@ -1,6 +1,9 @@
 import { UserType } from './user-type';
 
-export interface User {
-  username: string;
-  type: UserType;
+export class User {
+  constructor(
+    public username: string,
+    public type: UserType
+  ) {}
+
 }
